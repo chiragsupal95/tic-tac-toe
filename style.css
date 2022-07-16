@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans&family=Ubuntu:wght@300&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.box{
+    font-size: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.border-right{
+    border-right: 3px solid black;
+}
+.border-bottom{
+    border-bottom: 3px solid black;
+}
+
+h1{
+    margin: 50px;
+    text-align: center;
+}
+
+.center{
+    text-align: center;
+}
+
+.game-container{
+    margin: 50px;
+    justify-content: center;
+    display: grid;
+    grid-template-rows: repeat(3, 15vh);
+    grid-template-columns: repeat(3, 15vh);
+    position: relative  ;
+    cursor: pointer;
+}
+
+.playerTurn{
+    text-align: center;
+}
+
+#reset{
+    text-align: center;
+    height: 30px;
+    width: 100px;
+    margin: 25px;
+    padding: 5px;
+    color: #fff;
+    font-size: large;
+    border : 3px solid #494949;
+    background-color: #cd4646;
+    cursor: pointer;
+}
+
+#reset:hover{
+    text-align: center;
+    height: 40px;
+    width: 110px;   
+    
+    font-size: larger;
+    border : 3px solid #494949;
+    background-color: #da5555;
+    cursor: pointer;
+    position: sticky;
+}
