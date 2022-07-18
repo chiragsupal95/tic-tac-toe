@@ -13,11 +13,11 @@ let winChances = [
     [2,4,6],
 ];
 
-let boxes = document.getElementsByClassName('box');
+let boxes = document.getElementsByClassName("box");
 
-let gameBoard = ['', '', '', '', '', '', '', '', ''];
+let gameBoard = ["", "", "", "", "", "", "", "", ""];
 
-const setTurnColor = () => document.getElementsByClassName('playerTurn')[0].style.color = "blue";
+const setTurnColor = () => document.getElementsByClassName('playerTurn')[0].style.color = "#0000FF";
 
 const takePlayerNames = () => {
     player1 = prompt("Player1 (X) name : ");
@@ -28,7 +28,7 @@ const takePlayerNames = () => {
     if(player2 === null || player2 === ""){
         player2 = "O";
     }
-    document.getElementsByClassName('playerTurn')[0].innerText = player1 + " Turn";
+    document.getElementsByClassName('playerTurn')[0].innerText = player1 + "\'s Turn";
     setTurnColor();
 }
 
@@ -48,20 +48,20 @@ const changeTurn = () => {
 
 
 const checkWinner = () => {
-    let boxText = document.getElementsByClassName('text');
-    winChances.forEach(element => {
+    let boxText = document.getElementsByClassName("text");
+winChances.forEach(element => {
         let firstPosition = boxText[element[0]];
         let secondPosition = boxText[element[1]];
         let thirdPosition = boxText[element[2]];
         
         if((firstPosition.innerText === secondPosition.innerText) && (thirdPosition.innerText === secondPosition.innerText) && (firstPosition.innerText !== "")){
-            document.querySelector('.playerTurn').innerText = currentPlayerName + " Won";
-            document.querySelector('.playerTurn').style.color = 'Green';
+            document.querySelector(".playerTurn").innerText = currentPlayerName + " Won";
+            document.querySelector(".playerTurn").style.color = "#008000";
             gameOver = true;
-            firstPosition.style.color = secondPosition.style.color = thirdPosition.style.color ='green';
+            firstPosition.style.color = secondPosition.style.color = thirdPosition.style.color ="#008000";
         }
         else if(!gameBoard.includes('') && gameOver != true){
-            document.querySelector('.playerTurn').innerText = "Match Drawn!";
+            document.querySelector(".playerTurn").innerText = "Match Drawn!";
             gameOver = true;
         }
     })
@@ -70,50 +70,46 @@ const checkWinner = () => {
 
 
 const changeTextColor = (turn,boxText) => {
-    if(turn === 'X'){
-        boxText.style.color = 'blue';
-        document.getElementsByClassName('playerTurn')[0].style.color = "red";
+    if(turn === "X"){
+        boxText.style.color = "#0000FF";
+        document.getElementsByClassName('playerTurn')[0].style.color = "#FF0000";
     }
-    else if(turn === 'O'){
-        boxText.style.color = 'red';
-        document.getElementsByClassName('playerTurn')[0].style.color = "blue";
+    else if(turn === "O"){
+        boxText.style.color = "#FF0000";
+        document.getElementsByClassName('playerTurn')[0].style.color = "#0000FF";
     }
 }
 
 
 Array.from(boxes).forEach( element => {
-    let boxText = element.querySelector('.text')
-    element.addEventListener('click', () =>{
-        if(boxText.innerText === '' && gameOver !== true){
+    let boxText = element.querySelector(".text")
+    element.addEventListener("click", () =>{
+        if(boxText.innerText === "" && gameOver !== true){
             boxText.innerText = turn;
-            const clickedBoxIndex = parseInt(boxText.getAttribute('data-cell-index'));
+            const clickedBoxIndex = parseInt(boxText.getAttribute("data-cell-index"));
             gameBoard[clickedBoxIndex] = turn;
             changeTextColor(turn,boxText);
             checkWinner();
             
             if(!gameOver){
                 turn = changeTurn();
-                
-                document.getElementsByClassName('playerTurn')[0].innerText = currentPlayerName + " Turn";
+                document.getElementsByClassName("playerTurn")[0].innerText = currentPlayerName + "\'s Turn";
                 
             }
         }
-        
     })
-    
-    
 })
 
 
-reset.addEventListener('click', () => {
-    let boxText = document.querySelectorAll('.text');
+reset.addEventListener("click", () => {
+    let boxText = document.querySelectorAll(".text");
     Array.from(boxText).forEach(element => {
         element.innerText = "";
-        element.style.color = 'black';
+        element.style.color = "#000000";
     });
     turn = "X";
     gameOver = false;
-    gameBoard = ['', '', '', '', '', '', '', '', ''];
-    document.getElementsByClassName('playerTurn')[0].innerText = player1 + " Turn";
+    gameBoard = ["", "", "", "", "", "", "", "", ""];
+    document.getElementsByClassName("playerTurn")[0].innerText = player1 + "\'s Turn";
     setTurnColor();
 })
